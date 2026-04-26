@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navItems } from "../data/nav";
 import { useLanguage } from "../i18n/LanguageContext";
+import { assetPath } from "../utils/asset";
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
@@ -51,8 +52,8 @@ export function Navigation() {
         </button>
 
         <Link to="/" className="nav-logo" data-cursor="merge" aria-label={t("nav.homeLabel")}>
-          <img className="nav-logo__word" src="/assets/logos/main-logo-white.svg" alt="Nolan" />
-          <img className="nav-logo__icon" src="/assets/logos/main-icon-white.svg" alt="Nolan" />
+          <img className="nav-logo__word" src={assetPath("assets/logos/main-logo-white.svg")} alt="Nolan" />
+          <img className="nav-logo__icon" src={assetPath("assets/logos/main-icon-white.svg")} alt="Nolan" />
         </Link>
 
         <Link to="/contact" className="nav-talk" data-cursor="merge">

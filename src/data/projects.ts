@@ -1,7 +1,8 @@
 import type { Project } from "../types/project";
+import { assetPath } from "../utils/asset";
 
-const logoPath = "/assets/project-logos/";
-const coverPath = "/assets/project-covers/";
+const logoPath = assetPath("assets/project-logos/");
+const coverPath = assetPath("assets/project-covers/");
 
 export const featuredProjects: Project[] = [
   {

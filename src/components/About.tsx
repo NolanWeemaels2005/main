@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n/LanguageContext";
+import { assetPath } from "../utils/asset";
 
 const tools = [
-  { name: "Adobe Illustrator", icon: "/assets/icons/tools/IllustratorWhite.svg" },
-  { name: "Adobe InDesign", icon: "/assets/icons/tools/InDesignWhite.svg" },
-  { name: "Adobe Photoshop", icon: "/assets/icons/tools/PhotoshopWhite.svg" },
-  { name: "Figma", icon: "/assets/icons/tools/FigmaWhite.svg" },
-  { name: "Visual Studio Code", icon: "/assets/icons/tools/VScodeWhite.svg" },
+  { name: "Adobe Illustrator", icon: assetPath("assets/icons/tools/IllustratorWhite.svg") },
+  { name: "Adobe InDesign", icon: assetPath("assets/icons/tools/InDesignWhite.svg") },
+  { name: "Adobe Photoshop", icon: assetPath("assets/icons/tools/PhotoshopWhite.svg") },
+  { name: "Figma", icon: assetPath("assets/icons/tools/FigmaWhite.svg") },
+  { name: "Visual Studio Code", icon: assetPath("assets/icons/tools/VScodeWhite.svg") },
 ];
 
 export function About() {
@@ -27,7 +28,7 @@ export function About() {
         </div>
 
         <div className="about-portrait" data-reveal>
-          <img src="/assets/about/nolan-portrait.png" alt={t("about.portraitAlt")} />
+          <img src={assetPath("assets/about/nolan-portrait.png")} alt={t("about.portraitAlt")} />
         </div>
       </div>
 

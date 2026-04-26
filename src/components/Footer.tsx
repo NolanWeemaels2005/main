@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { navItems } from "../data/nav";
 import { useLanguage } from "../i18n/LanguageContext";
+import { assetPath } from "../utils/asset";
 
 const socials = [
-  { label: "Instagram", icon: "/assets/icons/social/InstagramWhite.svg", href: "https://www.instagram.com/nolanweemaelsdesign/" },
-  { label: "LinkedIn", icon: "/assets/icons/social/LinkedInWhite.svg", href: "https://www.linkedin.com/in/nolan-weemaels-1780511b4/" },
-  { label: "Kaai", icon: "/assets/icons/social/kaaiIconWhite.svg", href: "https://kaai.be" },
+  { label: "Instagram", icon: assetPath("assets/icons/social/InstagramWhite.svg"), href: "https://www.instagram.com/nolanweemaelsdesign/" },
+  { label: "LinkedIn", icon: assetPath("assets/icons/social/LinkedInWhite.svg"), href: "https://www.linkedin.com/in/nolan-weemaels-1780511b4/" },
+  { label: "Kaai", icon: assetPath("assets/icons/social/kaaiIconWhite.svg"), href: "https://kaai.be" },
 ];
 
 export function Footer() {
@@ -16,7 +17,7 @@ export function Footer() {
       <div className="footer-top">
         <div>
           <Link to="/" className="footer-logo" data-cursor="merge" aria-label={t("nav.homeLabel")}>
-            <img src="/assets/logos/main-logo-white.svg" alt="Nolan" />
+            <img src={assetPath("assets/logos/main-logo-white.svg")} alt="Nolan" />
           </Link>
 
           <div className="footer-columns">
