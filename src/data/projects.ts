@@ -109,5 +109,5 @@ export const allProjects: Project[] = [
   { title: "Shift Festival 2026", titleKey: "project.shift-festival.title", slug: "shift-festival", logo: `${logoPath}ShiftWhite.svg`, color: "#000" },
   { title: "Erasmus Hogeschool", titleKey: "project.erasmus.title", slug: "erasmus", logo: `${logoPath}ehbWhite.svg`, color: "#000" },
   { title: "Studio By Cas", titleKey: "project.studio-by-cas.title", slug: "studio-by-cas", logo: `${logoPath}studioByCasWhite.svg`, color: "#000" },
-  { title: "Mentalite Sportswear", titleKey: "project.mentalite.title", slug: "mentalite", logo: `${logoPath}MentalitéWhite.svg`, color: "#000" },
+  { title: "Mentalite Sportswear", titleKey: "project.mentalite.title", slug: "mentalite", logo: `${logoPath}MentaliteWhite.svg`, color: "#000" },
 ];
