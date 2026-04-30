@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { featuredProjects } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -10,9 +11,9 @@ export function LogoStrip() {
         <p>{t("portfolio.clients")}</p>
         <div className="logo-rail">
           {[...featuredProjects, ...featuredProjects].map((project, index) => (
-            <a href={`/portfolio/${project.slug}`} data-cursor="soft" key={`${project.slug}-${index}`}>
+            <Link to={`/portfolio/${project.slug}`} data-cursor="soft" key={`${project.slug}-${index}`}>
               <img src={project.logo} alt={project.titleKey ? t(project.titleKey) : project.title} />
-            </a>
+            </Link>
           ))}
         </div>
       </div>
