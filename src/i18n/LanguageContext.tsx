@@ -62,7 +62,7 @@ const dictionaries: Record<Language, Dictionary> = {
     "about.storyThree": "Omdat ik ook heb leren coderen, denk ik automatisch mee over hoe een ontwerp echt gebruikt wordt. Zo blijft mijn werk gestructureerd, bruikbaar en helder.",
     "about.tools": "Mijn tools",
     "about.portraitAlt": "Nolan Weemaels aan het werk",
-    "video.play": "Video afspelen",
+    "video.play": "Video afspele",
     "video.placeholder": "Placeholder",
     "project.back": "Portfolio",
     "project.eyebrow": "Project",
