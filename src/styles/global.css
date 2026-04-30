@@ -1854,10 +1854,36 @@ video {
   outline: 0;
 }
 
+.contact-form input:disabled,
+.contact-form textarea:disabled {
+  opacity: 0.72;
+}
+
 .contact-form textarea {
   min-height: 138px;
   resize: vertical;
   border-radius: 24px;
+}
+
+.contact-form__status,
+.contact-form__error {
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.contact-form__status {
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.contact-form__error {
+  color: var(--orange);
+  font-size: 0.88rem;
+}
+
+.contact-form__error--form {
+  min-height: 1.1rem;
 }
 
 .contact-form button {
@@ -1879,6 +1905,10 @@ video {
   transform: translateX(-50%);
   overflow: hidden;
   transition: transform 0.3s var(--ease), background 0.25s ease;
+}
+
+.contact-form button:disabled {
+  opacity: 0.7;
 }
 
 .contact-form button:hover {

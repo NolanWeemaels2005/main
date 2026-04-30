@@ -1,3 +1,4 @@
+import { useForm, ValidationError } from "@formspree/react";
 import { Instagram, Mail, Phone, Send } from "lucide-react";
 import { Hero } from "../components/Hero";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -6,6 +7,7 @@ import { useLanguage } from "../i18n/LanguageContext";
 export function ContactPage() {
   useScrollReveal();
   const { t } = useLanguage();
+  const [state, handleSubmit] = useForm("mbdwrepv");
 
   return (
     <>
@@ -18,22 +20,30 @@ export function ContactPage() {
         </div>
 
         <div className="section-container contact-layout">
-          <form className="contact-form" data-reveal>
+          <form className="contact-form" onSubmit={handleSubmit} data-reveal>
+            {state.succeeded ? (
+              <p className="contact-form__status contact-form__status--success" role="status">
+                {t("contact.success")}
+              </p>
+            ) : null}
             <label>
               <span>{t("contact.name")}</span>
-              <input type="text" name="name" />
+              <input type="text" name="name" autoComplete="name" required disabled={state.submitting || state.succeeded} />
             </label>
             <label>
               <span>{t("contact.email")}</span>
-              <input type="text" name="contact" />
+              <input type="email" name="email" autoComplete="email" required disabled={state.submitting || state.succeeded} />
+              <ValidationError className="contact-form__error" field="email" errors={state.errors} />
             </label>
             <label>
               <span>{t("contact.message")}</span>
-              <textarea name="message" rows={6} />
+              <textarea name="message" rows={6} required disabled={state.submitting || state.succeeded} />
+              <ValidationError className="contact-form__error" field="message" errors={state.errors} />
             </label>
-            <button type="submit" data-cursor="merge">
+            <ValidationError className="contact-form__error contact-form__error--form" errors={state.errors} />
+            <button type="submit" data-cursor="merge" disabled={state.submitting || state.succeeded}>
               <Send aria-hidden="true" size={20} />
-              {t("contact.send")}
+              {state.submitting ? t("contact.sending") : t("contact.send")}
             </button>
           </form>
 
