@@ -83,9 +83,9 @@ export const featuredProjects: Project[] = [
     summaryKey: "project.ring-tv.summary",
   },
   {
-    title: "Kaai",
+    title: "Kaai.",
     titleKey: "project.kaai.title",
-    slug: "kaai",
+    slug: "kaai.",
     logo: `${logoPath}kaaiWhite.svg`,
     cover: `${coverPath}coverKAAI.png`,
     color: "#b6bc00",

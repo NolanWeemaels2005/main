@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap");
 
 @font-face {
   font-family: "Northwell";
@@ -122,6 +123,224 @@ html.native-cursor .custom-cursor {
 button {
   border: 0;
   background: none;
+}
+
+/* Kaai Modal */
+.kaai-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.25rem, 3.6vw, 3rem);
+  overflow: auto;
+}
+
+.kaai-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.kaai-modal__panel {
+  position: relative;
+  width: min(1100px, 96vw);
+  max-height: calc(100dvh - 2.5rem);
+  min-height: min(680px, 86dvh);
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  border-radius: 0;
+  overflow: hidden;
+  font-family: "Outfit", var(--font-main);
+  color: #000;
+  box-shadow:
+    0 48px 120px rgba(0, 0, 0, 0.75),
+    0 0 0 10px rgba(0, 0, 0, 0.72);
+  transform: translateZ(0);
+}
+
+.kaai-modal__panel::before {
+  content: "";
+  position: absolute;
+  inset: -18px -18px -36px;
+  border: 10px solid #000;
+  pointer-events: none;
+}
+
+.kaai-modal__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 6px rgba(215, 223, 35, 0.75);
+  pointer-events: none;
+}
+
+.kaai-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 6;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 3px solid #d7df23;
+  border-radius: 999px;
+  background: #000;
+  color: #d7df23;
+  font-family: "Outfit", var(--font-main);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.kaai-modal__close:hover {
+  background: #d7df23;
+  color: #000;
+}
+
+.kaai-modal__left {
+  background: #d7df23;
+  padding: clamp(2.2rem, 4.2vw, 4rem);
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 1.6rem;
+}
+
+.kaai-modal__logo {
+  width: min(320px, 62%);
+  height: auto;
+}
+
+.kaai-modal__headline {
+  font-size: clamp(2.3rem, 3.7vw, 3.35rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.kaai-modal__copy {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  max-width: 34ch;
+}
+
+.kaai-modal__tagline {
+  align-self: end;
+  font-size: clamp(2.2rem, 3.6vw, 3.1rem);
+  font-weight: 600;
+  line-height: 0.95;
+  transform: rotate(-10deg);
+  transform-origin: left bottom;
+  letter-spacing: 0;
+  text-shadow:
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000;
+  -webkit-text-stroke: 6px #000;
+  paint-order: stroke fill;
+}
+
+.kaai-modal__tagline {
+  color: #d7df23;
+}
+
+.kaai-modal__right {
+  background: #000;
+  color: #d7df23;
+  position: relative;
+}
+
+.kaai-modal__right-inner {
+  height: 100%;
+  padding: clamp(2rem, 3.6vw, 3.25rem);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 1.35rem;
+  background-image: var(--kaai-bg);
+  background-size: 110px 110px;
+  background-repeat: repeat;
+}
+
+.kaai-modal__right-title {
+  font-size: clamp(3.2rem, 5.2vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.kaai-modal__right-sub {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: rgba(215, 223, 35, 0.9);
+  max-width: 46ch;
+}
+
+.kaai-modal__services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.1rem, 2vw, 2.25rem);
+  align-content: center;
+  justify-items: center;
+  padding-top: 0.75rem;
+}
+
+.kaai-modal__service {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.kaai-modal__service img {
+  width: 78px;
+  height: 78px;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.45));
+}
+
+.kaai-modal__service span {
+  font-size: 1.15rem;
+  line-height: 1.05;
+}
+
+.kaai-modal__cta {
+  margin-top: 0.5rem;
+  background: #d7df23;
+  color: #000;
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.7rem;
+  font-size: 1.55rem;
+  font-weight: 600;
+}
+
+.kaai-modal__cta img {
+  width: 44px;
+  height: 44px;
+  filter: brightness(0);
+}
+
+@media (max-width: 860px) {
+  .kaai-modal__panel {
+    grid-template-columns: 1fr;
+    min-height: min(820px, 92vh);
+  }
+
+  .kaai-modal__services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kaai-modal__tagline {
+    transform: rotate(-8deg);
+  }
 }
 
 img,

@@ -1,16 +1,25 @@
+import { useState } from "react";
+import type { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import { navItems } from "../data/nav";
 import { useLanguage } from "../i18n/LanguageContext";
+import { KaaiModal } from "./KaaiModal";
 import { assetPath } from "../utils/asset";
 
 const socials = [
   { label: "Instagram", icon: assetPath("assets/icons/social/InstagramWhite.svg"), href: "https://www.instagram.com/nolanweemaelsdesign/" },
   { label: "LinkedIn", icon: assetPath("assets/icons/social/LinkedInWhite.svg"), href: "https://www.linkedin.com/in/nolan-weemaels-1780511b4/" },
-  { label: "Kaai", icon: assetPath("assets/icons/social/kaaiIconWhite.svg"), href: "https://kaai.be" },
+  { label: "Kaai", icon: assetPath("assets/icons/social/kaaiIconWhite.svg"), href: "https://kaai.be", modal: true },
 ];
 
 export function Footer() {
   const { t } = useLanguage();
+  const [kaaiOpen, setKaaiOpen] = useState(false);
+
+  function openKaaiModal(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    setKaaiOpen(true);
+  }
 
   return (
     <footer className="site-footer" data-reveal>
@@ -25,7 +34,7 @@ export function Footer() {
               <h3>{t("footer.links")}</h3>
               <a href="https://www.instagram.com/nolanweemaelsdesign/" data-cursor="soft">Instagram</a>
               <a href="https://www.linkedin.com/in/nolan-weemaels-1780511b4/" data-cursor="soft">LinkedIn</a>
-              <a href="https://kaai.be" data-cursor="soft">Kaai.</a>
+              <a href="https://kaai.be" data-cursor="soft" onClick={openKaaiModal}>Kaai.</a>
             </div>
             <div>
               <h3>{t("footer.pages")}</h3>
@@ -56,12 +65,26 @@ export function Footer() {
 
         <div className="footer-socials">
           {socials.map((social) => (
-            <a href={social.href} data-cursor="soft" aria-label={social.label} key={social.label}>
-              <img src={social.icon} alt="" loading="lazy" decoding="async" />
-            </a>
+            social.modal ? (
+              <a
+                href={social.href}
+                data-cursor="soft"
+                aria-label={social.label}
+                key={social.label}
+                onClick={openKaaiModal}
+              >
+                <img src={social.icon} alt="" loading="lazy" decoding="async" />
+              </a>
+            ) : (
+              <a href={social.href} data-cursor="soft" aria-label={social.label} key={social.label}>
+                <img src={social.icon} alt="" loading="lazy" decoding="async" />
+              </a>
+            )
           ))}
         </div>
       </div>
+
+      <KaaiModal open={kaaiOpen} onClose={() => setKaaiOpen(false)} />
     </footer>
   );
 }

@@ -1,0 +1,156 @@
+import { useEffect, useId } from "react";
+import type { CSSProperties } from "react";
+import { createPortal } from "react-dom";
+import { assetPath } from "../utils/asset";
+
+type KaaiModalProps = {
+  open: boolean;
+  onClose: () => void;
+};
+
+export function KaaiModal({ open, onClose }: KaaiModalProps) {
+  const titleId = useId();
+
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return createPortal(
+    <div className="kaai-modal" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+      <button
+        type="button"
+        className="kaai-modal__backdrop"
+        aria-label="Sluiten"
+        onClick={onClose}
+      />
+
+      <div className="kaai-modal__panel" role="document">
+        <button
+          type="button"
+          className="kaai-modal__close"
+          aria-label="Sluiten"
+          data-cursor="merge"
+          onClick={onClose}
+        >
+          ×
+        </button>
+
+        <div className="kaai-modal__left">
+          <img className="kaai-modal__logo" src={assetPath("assets/kaai/logoKaai.svg")} alt="Kaai" />
+
+          <h2 className="kaai-modal__headline" id={titleId}>
+            Meer nodig dan wat
+            <br />
+            ik je kan bieden?
+          </h2>
+          <p className="kaai-modal__copy">
+            Ik ben onderdeel van Kaai. Samen zijn we goed uitgerust om elk project van A tot Z te realiseren.
+          </p>
+
+          <p className="kaai-modal__tagline">
+            Vier vrienden.
+            <br />
+            Een creatiekracht.
+          </p>
+        </div>
+
+        <div className="kaai-modal__right">
+          <div
+            className="kaai-modal__right-inner"
+            style={
+              {
+                "--kaai-bg": `url(${assetPath("assets/kaai/background.png")})`,
+              } as CSSProperties
+            }
+          >
+            <h3 className="kaai-modal__right-title">We got you.</h3>
+            <p className="kaai-modal__right-sub">
+              Samen bieden we een volledig pakket
+              <br />
+              aan creatieve en technische diensten:
+            </p>
+
+            <div className="kaai-modal__services" aria-label="Diensten">
+              <div className="kaai-modal__service">
+                <img src={assetPath("assets/kaai/code_xml_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />
+                <span>
+                  Full Stack
+                  <br />
+                  Development
+                </span>
+              </div>
+              <div className="kaai-modal__service">
+                <img src={assetPath("assets/kaai/design_services_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />
+                <span>
+                  Graphic
+                  <br />
+                  Design
+                </span>
+              </div>
+              <div className="kaai-modal__service">
+                <img src={assetPath("assets/kaai/motion_blur_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />
+                <span>
+                  Motion
+                  <br />
+                  Graphics
+                </span>
+              </div>
+              <div className="kaai-modal__service">
+                <img src={assetPath("assets/kaai/camera_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />
+                <span>
+                  Photo en
+                  <br />
+                  Video
+                </span>
+              </div>
+              <div className="kaai-modal__service">
+                <img src={assetPath("assets/kaai/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />
+                <span>
+                  Live
+                  <br />
+                  Visuals
+                </span>
+              </div>
+              <div className="kaai-modal__service">
+                <img src={assetPath("assets/kaai/deployed_code_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />
+                <span>
+                  Fysieke
+                  <br />
+                  Installaties
+                </span>
+              </div>
+            </div>
+
+            <a
+              href="https://kaai.be"
+              target="_blank"
+              rel="noreferrer"
+              className="kaai-modal__cta"
+              data-cursor="merge"
+            >
+              <span>Samen maken we impact.</span>
+              <img src={assetPath("assets/kaai/arrow_forward_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
