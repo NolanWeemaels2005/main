@@ -16,6 +16,7 @@ export function KaaiModal({ open, onClose }: KaaiModalProps) {
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.classList.add("kaai-modal-open");
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -25,6 +26,7 @@ export function KaaiModal({ open, onClose }: KaaiModalProps) {
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.documentElement.classList.remove("kaai-modal-open");
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [open, onClose]);
@@ -45,10 +47,10 @@ export function KaaiModal({ open, onClose }: KaaiModalProps) {
           type="button"
           className="kaai-modal__close"
           aria-label="Sluiten"
-          data-cursor="merge"
           onClick={onClose}
         >
-          ×
+          <span aria-hidden="true">×</span>
+          <span>Close</span>
         </button>
 
         <div className="kaai-modal__left">
@@ -63,11 +65,6 @@ export function KaaiModal({ open, onClose }: KaaiModalProps) {
             Ik ben onderdeel van Kaai. Samen zijn we goed uitgerust om elk project van A tot Z te realiseren.
           </p>
 
-          <p className="kaai-modal__tagline">
-            Vier vrienden.
-            <br />
-            Een creatiekracht.
-          </p>
         </div>
 
         <div className="kaai-modal__right">
@@ -138,11 +135,10 @@ export function KaaiModal({ open, onClose }: KaaiModalProps) {
             </div>
 
             <a
-              href="https://kaai.be"
+              href="https://www.instagram.com/kaaipunt/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="kaai-modal__cta"
-              data-cursor="merge"
             >
               <span>Samen maken we impact.</span>
               <img src={assetPath("assets/kaai/arrow_forward_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg")} alt="" />

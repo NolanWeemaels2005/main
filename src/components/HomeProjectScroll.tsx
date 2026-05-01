@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { featuredProjects } from "../data/projects";
+import { useFeaturedProjectsQuery } from "../data/projectQueries";
 import { useTilt } from "../hooks/useTilt";
 import { useLanguage } from "../i18n/LanguageContext";
 import type { Project } from "../types/project";
@@ -42,6 +42,7 @@ function ScrollProjectCard({ project, index, setCardRef }: ScrollProjectCardProp
 }
 
 export function HomeProjectScroll() {
+  const { data: featuredProjects } = useFeaturedProjectsQuery();
   const sectionRef = useRef<HTMLElement>(null);
   const frameRef = useRef<number | null>(null);
   const cardRefs = useRef<Array<HTMLAnchorElement | null>>([]);
@@ -51,6 +52,8 @@ export function HomeProjectScroll() {
   }
 
   useEffect(() => {
+    const mobileMedia = window.matchMedia("(max-width: 640px), (pointer: coarse)");
+
     function updateCards(progress: number) {
       const active = progress * (featuredProjects.length - 1);
 
@@ -84,6 +87,11 @@ export function HomeProjectScroll() {
       frameRef.current = window.requestAnimationFrame(measureProgress);
     }
 
+    if (mobileMedia.matches) {
+      sectionRef.current?.classList.add("is-ready");
+      return;
+    }
+
     measureProgress();
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
@@ -100,7 +108,7 @@ export function HomeProjectScroll() {
       window.removeEventListener("scroll", requestProgressUpdate);
       window.removeEventListener("resize", requestProgressUpdate);
     };
-  }, []);
+  }, [featuredProjects.length]);
 
   return (
     <section

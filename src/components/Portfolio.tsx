@@ -1,12 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { allProjects, featuredProjects } from "../data/projects";
+import { useAllProjectsQuery, useFeaturedProjectsQuery } from "../data/projectQueries";
 import { useTilt } from "../hooks/useTilt";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export function Portfolio() {
   const { t } = useLanguage();
+  const { data: featuredProjects } = useFeaturedProjectsQuery();
+  const { data: allProjects } = useAllProjectsQuery();
   const featuredTilt = useTilt({ max: 7, scale: 1.018 });
   const projectTilt = useTilt({ max: 9, scale: 1.02 });
 

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { featuredProjects } from "../data/projects";
+import { useFeaturedProjectsQuery } from "../data/projectQueries";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export function LogoStrip() {
   const { t } = useLanguage();
+  const { data: featuredProjects } = useFeaturedProjectsQuery();
 
   return (
     <section className="logo-strip" aria-label={t("portfolio.clients")}>

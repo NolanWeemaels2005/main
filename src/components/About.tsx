@@ -57,7 +57,7 @@ export function About() {
       <div className="section-container inline-cta" data-reveal>
         <h2>{t("portfolio.cta")}</h2>
         <div>
-          <a href="mailto:weemaels.nolan2005@gmail.com" className="btn btn--primary" data-cursor="merge">{t("cta.letsTalk")}</a>
+          <Link to="/contact" className="btn btn--primary" data-cursor="merge">{t("cta.letsTalk")}</Link>
           <Link to="/portfolio" className="btn btn--secondary" data-cursor="merge">{t("cta.portfolio")}</Link>
         </div>
       </div>

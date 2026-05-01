@@ -1,17 +1,15 @@
 import { ArrowLeft } from "lucide-react";
 import type { CSSProperties } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { allProjects, featuredProjects } from "../data/projects";
+import { useProjectQuery } from "../data/projectQueries";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useLanguage } from "../i18n/LanguageContext";
-
-const projects = [...featuredProjects, ...allProjects.filter((project) => !featuredProjects.some((item) => item.slug === project.slug))];
 
 export function ProjectDetailPage() {
   useScrollReveal();
   const { t } = useLanguage();
   const { slug } = useParams();
-  const project = projects.find((item) => item.slug === slug);
+  const { data: project } = useProjectQuery(slug);
 
   if (!project) {
     return <Navigate to="/portfolio" replace />;
@@ -46,9 +44,9 @@ export function ProjectDetailPage() {
           <p className="eyebrow">{t("project.approach")}</p>
           <p>{t("project.defaultApproach")}</p>
         </div>
-        <a href="mailto:weemaels.nolan2005@gmail.com" className="btn btn--primary" data-cursor="merge">
+        <Link to="/contact" className="btn btn--primary" data-cursor="merge">
           {t("cta.letsTalk")}
-        </a>
+        </Link>
       </div>
     </section>
   );

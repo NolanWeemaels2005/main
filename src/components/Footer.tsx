@@ -50,9 +50,9 @@ export function Footer() {
         <div className="footer-cta">
           <p>{t("footer.project")}</p>
           <strong>{t("cta.letsTalk")}</strong>
-          <a href="mailto:weemaels.nolan2005@gmail.com" className="btn btn--primary" data-cursor="merge">
+          <Link to="/contact" className="btn btn--primary" data-cursor="merge">
             {t("cta.letsTalk")}
-          </a>
+          </Link>
         </div>
       </div>
 
